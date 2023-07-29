@@ -13,5 +13,6 @@ urlpatterns = [
     path('Questions/', QuestionsView , name='Questions'),
     path('Appointment/', AppointmentView , name='Appointment'),
     path('Price/', PriceView , name='Price'),
+    path('Invoice/', InvoiceView , name='Invoice'),
     path('Policy/', PolicyView , name='Policy'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

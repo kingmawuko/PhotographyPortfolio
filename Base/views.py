@@ -17,7 +17,8 @@ def ContactView(request):
 
 
 def PolicyView(request):
-    context = {}
+    Info=PolicyModel.objects.all()
+    context = {'Info':Info}
     return render(request,'Base/Policy.html',context)
 
 
@@ -30,7 +31,8 @@ def QuestionsView(request):
 
 
 def PriceView(request):
-    context = {}
+    Service=ServiceType.objects.all()
+    context = {'Service':Service}
     return render(request,'Base/Price.html',context)
 
 
@@ -42,6 +44,12 @@ def AboutView(request):
 def AppointmentView(request):
     context = {}
     return render(request,'Base/Appointment.html',context)
+
+
+
+def InvoiceView(request):
+    context = {}
+    return render(request,'Base/Invoice.html',context)
 
 
 # INvoice 

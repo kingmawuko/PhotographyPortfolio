@@ -1,19 +1,122 @@
+
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Document</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<title>Questions</title>
 </head>
 <body>
+
     <div>
         <a href="{% url 'Base:Welcome' %}" ><i style="font-size:10vw;color: white;" class="fa fa-arrow-left ArrowSZ"></i></a>
       </div>
-    
+
+
+
+      <h1 style="text-align: center;font-size: 10vw; color: white;font-family: Georgia, 'Times New Roman', Times, serif;margin: 3vw;"> Common questions</h1>
+
+{% if Faq %}
+{% for i in Faq %}
+<button type="button" class="collapsible">{{i.Title}} </button>
+<div class="content"> {{i.Question}}</div>
+{% endfor %}
+{% endif %}
+
 </body>
 </html>
+
+  
+
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+var i;
+  
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+
+  function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";}
+    
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";}
+</script>
+
+
+
+
 <style>
+    .HomeBtn{text-align: center;font-size: 4vw;padding: 1vw;}
+
+
+
+
+.Link{font-size:15vw}
+.ReturnBtn{color: white; text-decoration: none;}
+.HomeBtn{text-align: center;font-size: 4vw;padding: 1vw;}
+.name{color: white;text-align: center; font-size: 7vw;}
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 4vw;
+  }
+
+  /* questions */
+  .collapsible {
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    padding: 3vw;
+    width: 100%;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+  border-radius: 3vw;
+  border: .2vw solid white;  
+    outline: none;
+    font-size: 6vw;
+  }
+ 
+    
+
+  
+
+  .content {
+    font-size: 5vw;
+    color: white;
+    display: none;
+    text-align: center;
+    margin: 1vw;
+    margin-bottom: 4vw;
+    overflow: hidden;
+    background-color: transparent;
+  
+   
+  }
+  .Title{
+      font-size: 4vw;
+    }
+
+
     body {
 
 
@@ -24,4 +127,6 @@ min-height: 100vh;
 margin: 0;
 padding: 0;
 }
+
+
 </style>

@@ -10,6 +10,20 @@
     <div>
         <a href="{% url 'Base:Welcome' %}" ><i style="font-size:10vw;color: white;" class="fa fa-arrow-left ArrowSZ"></i></a>
       </div>
+
+
+      <h1 style="text-align: center;color: white; font-size: 12vw;font-family: Georgia, 'Times New Roman', Times, serif;margin-bottom: 5vw;"> Terms of use </h1>
+
+      {% if Info %}
+      {% for i in Info %}
+
+      <h1 style="color: white;font-size: 8vw;text-align: center;"> {{i.Title}}</h1>
+
+      <h2 style="color: white;font-size: 5vw;text-align: center; margin-bottom: 6vw;"> {{i.Description}}</h2>
+
+
+      {% endfor %}
+      {% endif %}
     
 </body>
 </html>
@@ -24,4 +38,7 @@ min-height: 100vh;
 margin: 0;
 padding: 0;
 }
+
+
+/* white text for the infomation */
 </style>

@@ -1,21 +1,51 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Document</title>
+
+    <title>Web Development Services and Prices</title>
 </head>
 <body>
-    <div>
-        <a href="{% url 'Base:Welcome' %}" ><i style="font-size:10vw;color: white;" class="fa fa-arrow-left ArrowSZ"></i></a>
-      </div>
+    <div class="return-btn-container">
+        <a href="{% url 'Base:Welcome' %}" class="return-btn"><i class="fa fa-arrow-left"></i></a>
+    </div>
+
+    <h1>Services and Prices</h1>
+
+    <div class="container table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+
+              {% if Service %}
+                {% for service in Service %}
+                <tr>
+                    <td>{{ service.Service }}</td>
+                    <td>{{ service.Description }}</td>
+                    <td> $ {{ service.BaseFee }}</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
     
 </body>
 </html>
 
 <style>
-        body {
+       body {
   
     
   background: linear-gradient(to bottom, navy, black);
@@ -25,4 +55,77 @@
   margin: 0;
   padding: 0;
 }
+
+    h1 {
+        text-align: center;
+        padding: 2vw;
+    }
+
+    .return-btn-container {
+        text-align: center;
+        font-size: 4vw;
+        padding: 1vw;
+    }
+
+    .return-btn {
+        color: white;
+        text-decoration: none;
+    }
+
+    .container {
+        width: 90vw;
+        max-width: 800px;
+        margin: 2vw auto;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 0.5vw;
+        box-shadow: 0 0.5vw 1vw rgba(255, 255, 255, 0.1);
+    }
+
+    .table-container {
+        padding: 2vw;
+    }
+
+
+    h1{color: white;font-family: Georgia, 'Times New Roman', Times, serif;}
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        color: white;
+    }
+
+    th, td {
+        padding: 1vw;
+        text-align: left;
+        border-bottom: 1px solid #444;
+    }
+
+    th {
+        background-color: #333;
+    }
+
+    .additional-features {
+        padding: 2vw;
+        margin-top: 2vw;
+    }
+
+    .additional-features h2 {
+        margin-bottom: 1vw;
+    }
+
+    .additional-features table {
+        width: 100%;
+        border-collapse: collapse;
+        color: white;
+    }
+
+    .additional-features th, .additional-features td {
+        padding: 1vw;
+        text-align: left;
+        border-bottom: 1px solid #444;
+    }
+
+    .additional-features th {
+        background-color: #333;
+    }
 </style>
