@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import *
 
 # Create your views here.
 
@@ -19,6 +20,13 @@ def PolicyView(request):
     context = {}
     return render(request,'Base/Policy.html',context)
 
+
+def QuestionsView(request):
+    Faq=CommonQuestion.objects.all()
+
+    # Common Questions 
+    context = {'Faq':Faq}
+    return render(request,'Base/Questions.html',context)
 
 
 def PriceView(request):
