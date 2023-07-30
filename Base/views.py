@@ -53,10 +53,11 @@ def AppointmentView(request):
     if 'SubmitForm' in request.POST:   
         location = request.POST.get('location')
         phone = request.POST.get('phone')
-        description = request.POST.get('description')
         email = request.POST.get('email') 
-        print({'location':location,'phone':phone,'description':description,'email':email})
-        messages.info(request,'Thank you for your message. You will be contacted soon. Appointment submission successful') 
+        name= request.POST.get('name') 
+        AppointmentRequest.objects.create(Location=location,PhoneNum=phone,Email=email)
+        print({'location':location,'phone':phone,'email':email})
+        messages.info(request,'Thank you !  You will be contacted soon. Appointment submission successful') 
     context = {}
     return render(request,'Base/Appointment.html',context)
 
@@ -82,7 +83,7 @@ def InvoiceView(request):
     context = {}
     return render(request,'Base/Invoice.html',context)
 
-def InvoiceReviewView(request,InvoiceNum): 
+def InvoiceReviewView(request,InvoiceNum):
     Invoice = get_object_or_404(InvoiceModel, Invoice=InvoiceNum)  
     if Invoice: 
             if Invoice.status == 'No': 

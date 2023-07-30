@@ -1,13 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"  href="{% static '/css/Contact.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Contact</title>
 </head>
 <body>
-
 
 <div class="Message">
 {% if messages %}
@@ -17,79 +18,23 @@
 {% endif %}
 </div>
 
+<div>
+  <a href="{% url 'Base:Welcome' %}"><i style="font-size:10vw;color: white;" class="fa fa-arrow-left ArrowSZ"></i></a>
+</div>
 
-  <div>
-    <a href="{% url 'Base:Welcome' %}"><i style="font-size:10vw;color: white;" class="fa fa-arrow-left ArrowSZ"></i></a>
-  </div>
-  
-  <div class="container form-container">
-    <h1 style="color: aliceblue;text-align: center;font-size: 4vw;">Let's Chat!</h1>
-    <form method="post">
-      {% csrf_token %}
-      <input placeholder="Name" type="text" id="name" name="name" required>     
-      <input placeholder="Email" type="email" id="email" name="email" required>
-      <textarea placeholder="Message" id="message" name="message" required></textarea>   
-      <input name="SendForm" type="submit" value="Send">
-    </form>
-  </div>
+<div class="container form-container">
+  <h1 style="color: aliceblue;text-align: center;font-size: 4vw;">Let's Chat!</h1>
+  <form method="post">
+    {% csrf_token %}
+    <input placeholder="Name" type="text" id="name" name="name" required>     
+    <input placeholder="Email" type="email" id="email" name="email" required>
+    <textarea placeholder="Message" id="message" name="message" required></textarea>   
+    <input name="SendForm" type="submit" value="Send">
+  </form>
+</div>
 
 <style>
-/* Shared styles from the previous example */
 
-/* Styles for the contact page */
-.form-container {
-  max-width: 50vw;
-  margin: 2vw auto;
-  background-color: #000000;
-  border-radius: 3vw;
-  padding: 2vw;
-}
-
-body {
-  background: linear-gradient(to bottom, navy, black);
-  font-family: Arial, sans-serif;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-label, input, textarea {
-  text-align: center;
-  width: 100%;
-  max-width: 40vw;
-  font-size: 3vw;
-  margin-bottom: 1vw;
-  padding: 1vw;
-  border-radius: 0.5vw;
-  background-color: #1c1c1c85;
-  border: solid navy.2vw ;
-  color: white;
-}
-
-input[type="submit"] {
-  background-color: navy;
-  color: white;
-  padding: 1vw 2vw;
-  border: solid white.1vw;
-  border-radius: 0.5vw;
-  cursor: pointer;
-}
-
-input[type="submit"]:hover {
-  background-color: rgb(4, 4, 178);
-}
-
-textarea {
-  height: 20vh;
-}
-
-.Message{font-size: 5vw; color: #ffffff; text-align: center;font-family: Georgia, 'Times New Roman', Times, serif;}
 </style>
     
 </body>

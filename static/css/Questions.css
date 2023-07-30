@@ -1,0 +1,68 @@
+.HomeBtn{text-align: center;font-size: 4vw;padding: 1vw;}
+
+
+
+
+.Link{font-size:15vw}
+.ReturnBtn{color: white; text-decoration: none;}
+.HomeBtn{text-align: center;font-size: 4vw;padding: 1vw;}
+.name{color: white;text-align: center; font-size: 7vw;}
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 4vw;
+  }
+
+  /* questions */
+  .collapsible {
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    padding: 3vw;
+    width: 100%;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+  border-radius: 3vw;
+  border: .2vw solid white;  
+    outline: none;
+    font-size: 6vw;
+  }
+ 
+    
+
+  
+
+  .content {
+    font-size: 5vw;
+    color: white;
+    display: none;
+    text-align: center;
+    margin: 1vw;
+    margin-bottom: 4vw;
+    overflow: hidden;
+    background-color: transparent;
+  
+   
+  }
+  .Title{
+      font-size: 4vw;
+    }
+
+
+    body {
+
+background: linear-gradient(to bottom, navy, black);
+font-family: Arial, sans-serif;
+
+min-height: 100vh;
+margin: 0;
+padding: 0;
+}

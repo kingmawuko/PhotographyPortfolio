@@ -36,7 +36,7 @@ class ServiceType(models.Model):
     
 
 class AppointmentRequest(models.Model):
-    Description = models.TextField(max_length=None, null=True, blank=True) 
+    
     Location = models.CharField(max_length=300,null=True,blank=True)
     PhoneNum  = models.CharField(max_length=300,null=True,blank=True)
     Name = models.CharField(max_length=300,null=True,blank=True)

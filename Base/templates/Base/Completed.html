@@ -1,102 +1,78 @@
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet"  href="{% static '/css/Completed.css' %}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Completed</title>
-
+</head>
 <body>
-  <a href="{% url 'Base:Welcome' %}">
-    <i class="fa fa-mail-reply Return" ></i>
-  </a>
-  <div class="progress-bar">
-    {% if Invoice.status == 'partial' %} 
-      <div class="progress-bar-fill Partial"></div>
-    {% elif Invoice.status == 'completed' %}
-      <div class="progress-bar-fill Completed"></div>
-    {% endif %}
-    <div class="progress-bar-labels">   
+  <div class="container">
+    <div class="header">
+      <a href="{% url 'Base:Welcome' %}">
+        <i class="fa fa-mail-reply return-btn"></i>
+      </a>
     </div>
-  </div>
-  <div class="payment-grid">
-    <div class="payment-item">
-      <div class="payment-label">Service Total</div>
-      <div class="payment-value">${{ Invoice.TotalDue }}</div>
-    </div>
-    <div class="payment-item">
-      <div class="payment-label">Down Payment</div>
-      <div class="payment-value">${{ Invoice.DownPayment }}</div>
-    </div>
-    <div class="payment-item">
-      <div class="payment-label">Final Payment</div>
-      <div class="payment-value">${{ Invoice.DownPayment }}</div>
-    </div>
-    <div class="payment-item">
-      <div class="payment-label">Base</div>
-      <div class="payment-value">${{ Invoice.Basepay }}</div>
-    </div>
-    <div class="payment-item">
-      <div class="payment-label">Additional features </div>
-      <div class="payment-value">
 
-    {% if Invoice.additional_features.exists %}
-    {% for i in Invoice.additional_features.all %}
-    ${{ i.Price }} - {{ i.Feature }} <br>
-    {% endfor %}
-    {% else %}
-    No additional features
-    {% endif %}  
+    <div class="progress-bar">
+      {% if Invoice.status == 'partial' %} 
+        <div class="progress-bar-fill partial"></div>
+      {% elif Invoice.status == 'completed' %}
+        <div class="progress-bar-fill completed"></div>
+      {% endif %}
+    </div>
+
+    <div class="payment-grid">
+      <div class="payment-item">
+        <div class="payment-label">Service Total</div>
+        <div class="payment-value">${{ Invoice.TotalDue }}</div>
+      </div>
+      <div class="payment-item">
+        <div class="payment-label">Down Payment</div>
+        <div class="payment-value">${{ Invoice.DownPayment }}</div>
+      </div>
+      <div class="payment-item">
+        <div class="payment-label">Final Payment</div>
+        <div class="payment-value">${{ Invoice.DownPayment }}</div>
+      </div>
+      <div class="payment-item">
+        <div class="payment-label">Base</div>
+        <div class="payment-value">${{ Invoice.Basepay }}</div>
+      </div>
+      <div class="payment-item">
+        <div class="payment-label">Additional Features</div>
+        <div class="payment-value">
+          {% if Invoice.additional_features.exists %}
+            {% for i in Invoice.additional_features.all %}
+              ${{ i.Price }} - {{ i.Feature }} <br>
+            {% endfor %}
+          {% else %}
+            No additional features
+          {% endif %}  
+        </div>
+      </div>
+      <div class="payment-item">
+        <div class="payment-label">Tax</div>
+        <div class="payment-value">${{ Invoice.Tax }}</div>
       </div>
     </div>
-    <div class="payment-item">
-      <div class="payment-label">Tax</div>
-      <div class="payment-value">${{ Invoice.Tax }}</div>
-    </div>
-  </div>
-  <hr>
-  {% if Invoice.status == 'No' %} 
-  <div class="Font">10% Down payment due ${{Invoice.DownPayment}}</div> 
-     <div class="PaymentMsg" > After you have made the initial 10% payment, I will arrive on the agreed-upon date  to capture event footage with my drone and other equipment. </div>
-    
-  {% elif Invoice.status == 'partial' %}
-  
-    <div class="Font">Remaining 90% ${{Invoice.FullPayment}}</div>
-   <div class="PaymentMsg" > Thank you for making the down payment. Our team will be visiting you soon to shoot the drone session. You can pay the remaining balance, but it's not mandatory until after the preview is sent. </div>
-  {% elif Invoice.status == 'completed' %}
 
-   <div class="PaymentMsg">Thank you for working with me ! </div>
+    <hr>
+
+    {% if Invoice.status == 'No' %} 
+      <div class="font">10% Down payment due ${{Invoice.DownPayment}}</div> 
+      <div class="payment-msg">After you have made the initial 10% payment, I will arrive on the agreed-upon date to capture event footage with my drone and other equipment.</div>
+    {% elif Invoice.status == 'partial' %}
+      <div class="font">Remaining 90% ${{Invoice.FullPayment}}</div>
+      <div class="payment-msg">Thank you for making the down payment. Our team will be visiting you soon to shoot the drone session. You can pay the remaining balance, but it's not mandatory until after the preview is sent.</div>
+    {% elif Invoice.status == 'completed' %}
+      <div class="payment-msg">Thank you for working with me!</div>
     {% elif Invoice.status == 'Refunded' %}
-    <div class="Font">Refund complete  </div>
-  {% endif %}
-
+      <div class="font">Refund complete</div>
+    {% endif %}
+  </div>
 </body>
 </html>
-
-<style>
-.PaymentMsg{text-align: center; font-size: 3vw; color: white; font-family: Georgia, 'Times New Roman', Times, serif; margin: 3vw;}
-.Completed{width: 100%;}
-.Partial{width: 15%;}
-.Return{font-size: 8vw; cursor: pointer; color: white; margin: 2vw;}
-body {
-  background: linear-gradient(to bottom, navy, black);font-family: Arial, sans-serif;min-height: 100vh;margin: 0;padding: 0;}
-.container {display: flex;flex-direction: column;align-items: center;padding: 5vw;}
-.header {display: flex;justify-content: space-between;width: 100%; margin-bottom: 5vw;}
-.return-btn {color: wheat;font-size: 8vw;cursor: pointer;}
-.progress-bar {display: flex;justify-content: space-between;width: 100%;height: 6vw;background-color: #ddd;border-radius: 4vw;overflow: hidden;margin-bottom: 5vw}
-.progress-bar-fill {height: 6vw;background-color: #4caf50;border-radius: 5vw;}
-.progress-bar-label {flex: 1;text-align: center;font-size: 3.5vw;}
-.service-total {font-size: 5vw;margin-bottom: 2vw;}
-.section {margin-bottom: 2vw;}
-.section-title {font-size: 4vw;margin-bottom: 1vw;}
-.section-text {font-size: 3.5vw;}
-.paypal-container {width: 100%;display: flex;justify-content: center;margin-top: 5vw;}
-.payment-grid {display: grid;grid-template-columns: repeat(2, 1fr);grid-template-rows: repeat(3, auto);gap: 1vw;background-color: #222;color: #fff;border-radius: 3vw;padding: 3vw;}
-.payment-item {display: flex;flex-direction: column;}
-.payment-label {font-size: 3vw;font-weight: bold;margin-bottom: 1vw;}
-.payment-value {font-size: 2vw;font-weight: bold;margin: .2vw;color: #ddddddc5;}
-</style>
-
-
