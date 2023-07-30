@@ -23,7 +23,7 @@
   </div>
   
   <div class="container form-container">
-    <h1 style="color: aliceblue;text-align: center;">Let's Chat!</h1>
+    <h1 style="color: aliceblue;text-align: center;font-size: 4vw;">Let's Chat!</h1>
     <form method="post">
       {% csrf_token %}
       <input placeholder="Name" type="text" id="name" name="name" required>     
@@ -60,27 +60,29 @@ form {
 }
 
 label, input, textarea {
+  text-align: center;
   width: 100%;
   max-width: 40vw;
+  font-size: 3vw;
   margin-bottom: 1vw;
   padding: 1vw;
   border-radius: 0.5vw;
-  background-color: #1c1c1c;
-  border: none;
+  background-color: #1c1c1c85;
+  border: solid navy.2vw ;
   color: white;
 }
 
 input[type="submit"] {
-  background-color: #663399;
+  background-color: navy;
   color: white;
   padding: 1vw 2vw;
-  border: none;
+  border: solid white.1vw;
   border-radius: 0.5vw;
   cursor: pointer;
 }
 
 input[type="submit"]:hover {
-  background-color: #4B0082;
+  background-color: rgb(4, 4, 178);
 }
 
 textarea {
