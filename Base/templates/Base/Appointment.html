@@ -7,18 +7,30 @@
     <title>Document</title>
 </head>
 <body>
+
+
+    <div class="Message">
+        {% if messages %}
+        {% for message in messages %}  
+        {{ message }}
+        {% endfor %}
+        {% endif %}
+        </div>
+
+
     <div>
         <a href="{% url 'Base:Welcome' %}" ><i style="font-size:10vw;color: white;" class="fa fa-arrow-left ArrowSZ"></i></a>
     </div>
 
     <div class="form-container">
         <!-- Form with input fields -->
-        <form class="custom-form">
+        <form class="custom-form" method="POST">
+            {% csrf_token %}
             <label for="location">Location</label>
             <input type="text" id="location" name="location" placeholder="Enter location" class="custom-input">
 
             <label for="description">Description</label>
-            <textarea id="description" name="description" placeholder="Enter description" class="custom-input" rows="4"></textarea>
+            <textarea id="description" name="description" placeholder="Enter description" class="Textarea-input" rows="6"></textarea>
 
             <label for="email">Email</label>
             <input type="text" id="email" name="email" placeholder="Enter email" class="custom-input">
@@ -29,15 +41,15 @@
             <label for="name">Name</label>
             <input type="text" id="name" name="name" placeholder="Enter name" class="custom-input">
 
-            <button type="submit" class="custom-button">Submit</button>
+            <button name="SubmitForm" type="submit" class="custom-button">Submit</button>
         </form>
     </div>
 </body>
 </html>
 
 <style>
+   label{font-size: 3vw;margin-top: 2vw;font-family: Georgia, 'Times New Roman', Times, serif;}
 
-    label{font-size: 3vw;margin-top: 2vw;font-family: Georgia, 'Times New Roman', Times, serif;}
     body {
 
         background: linear-gradient(to bottom, navy, black);
@@ -71,8 +83,7 @@
 
     .custom-input {
         width: 90%;
-        height: 3vw;
-       
+        height: 3vw;     
         font-size: 4vw;
         text-align: center;
         border: solid .4vw white;
@@ -82,14 +93,30 @@
         margin-bottom: 1rem;
     }
 
+
+
+    .Textarea-input {
+        width: 90%;
+       
+          
+        font-size: 4vw;
+        text-align: center;
+        border: solid .4vw white;
+        border-radius: 2vw;
+        background: linear-gradient(to bottom, navy, black );
+        color: white;
+        margin-bottom: 1rem;
+    }
+
+
+
     .custom-input::placeholder {
         color: #ccc;
     }
 
     .custom-button {
-      
         font-size: 3vw;
-        background: linear-gradient(to bottom, navy, black );
+        background: linear-gradient(to bottom, navy, black);
         border: solid .2vw white;
         width: 15vw;
         margin-top: 3vw;
@@ -98,4 +125,6 @@
         cursor: pointer;
         color: white;
     }
+
+    .Message{font-size: 5vw; color: #ffffff; text-align: center;font-family: Georgia, 'Times New Roman', Times, serif;margin-top: 2vw;}
 </style>

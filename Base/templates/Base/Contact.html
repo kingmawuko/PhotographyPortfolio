@@ -9,24 +9,27 @@
 <body>
 
 
+<div class="Message">
+{% if messages %}
+{% for message in messages %}  
+{{ message }}
+{% endfor %}
+{% endif %}
+</div>
+
+
   <div>
-    <a href="{% url 'Base:Welcome' %}" ><i style="font-size:10vw;color: white;" class="fa fa-arrow-left ArrowSZ"></i></a>
+    <a href="{% url 'Base:Welcome' %}"><i style="font-size:10vw;color: white;" class="fa fa-arrow-left ArrowSZ"></i></a>
   </div>
   
   <div class="container form-container">
     <h1 style="color: aliceblue;text-align: center;">Let's Chat!</h1>
     <form method="post">
       {% csrf_token %}
-      
-      <input placeholder="Name" type="text" id="name" name="name" required>
-      
-      
+      <input placeholder="Name" type="text" id="name" name="name" required>     
       <input placeholder="Email" type="email" id="email" name="email" required>
-      
-      
-      <textarea placeholder="Message" id="message" name="message" required></textarea>
-      
-      <input type="submit" value="Send">
+      <textarea placeholder="Message" id="message" name="message" required></textarea>   
+      <input name="SendForm" type="submit" value="Send">
     </form>
   </div>
 
@@ -84,6 +87,7 @@ textarea {
   height: 20vh;
 }
 
+.Message{font-size: 5vw; color: #ffffff; text-align: center;font-family: Georgia, 'Times New Roman', Times, serif;}
 </style>
     
 </body>
