@@ -16,6 +16,7 @@ def ContactView(request):
         message = request.POST.get('message')
         Email = request.POST.get('email')
         Name = request.POST.get('name')    
+        print({'Email':Email,'Name':Name,'message':message})
         contact=Contact.objects.create(Name=Name,Email=Email,Message=message)
         #Message = f' "{contact.Subject}" form submitted from {contact.email}. They mentioned in their message ({contact.Message})'
         print({'Email':Email,'message':message,'Name':Name})
@@ -55,7 +56,7 @@ def AppointmentView(request):
         phone = request.POST.get('phone')
         email = request.POST.get('email') 
         name= request.POST.get('name') 
-        AppointmentRequest.objects.create(Location=location,PhoneNum=phone,Email=email)
+        AppointmentRequest.objects.create(Location=location,PhoneNum=phone,Email=email,Name=name)
         print({'location':location,'phone':phone,'email':email})
         messages.info(request,'Thank you !  You will be contacted soon. Appointment submission successful') 
     context = {}

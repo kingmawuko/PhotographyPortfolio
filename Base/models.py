@@ -35,12 +35,12 @@ class ServiceType(models.Model):
         return f"{self.Service} ${self.BaseFee}"
     
 
-class AppointmentRequest(models.Model):
-    
+class AppointmentRequest(models.Model): 
     Location = models.CharField(max_length=300,null=True,blank=True)
     PhoneNum  = models.CharField(max_length=300,null=True,blank=True)
     Name = models.CharField(max_length=300,null=True,blank=True)
     Email = models.EmailField()
+    Date = models.DateField(auto_now_add=True,null=True,blank=True) 
 
     def __str__(self):
         return f"{self.Name}"

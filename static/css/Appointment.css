@@ -32,8 +32,7 @@ body {
 }
 
 .custom-input {
-    width: 90%;
-      
+    width: 90%;    
     font-size: 3vw;
     text-align: center;
     border: solid .4vw white;
@@ -46,17 +45,14 @@ body {
 
 
 .Textarea-input {
-    width: 90%;
-   
-      
+    width: 90%;   
     font-size: 4vw;
     text-align: center;
     border: solid .4vw white;
     border-radius: 2vw;
     background: linear-gradient(to bottom, navy, black );
     color: white;
-    margin-bottom: 1rem;
-}
+    margin-bottom: 1rem;}
 
 
 

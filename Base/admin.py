@@ -5,6 +5,7 @@ from.models import *
 
 admin.site.register(AdditionalFeatures)
 admin.site.register(CommonQuestion)
+admin.site.register(AppointmentRequest)
 admin.site.register(InvoiceModel)
 admin.site.register(ServiceType)
 admin.site.register(PolicyModel)
