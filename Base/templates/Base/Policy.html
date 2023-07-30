@@ -1,8 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="{% static '/css/Policy.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Document</title>
 </head>
@@ -10,18 +12,21 @@
     <div>
         <a href="{% url 'Base:Welcome' %}" ><i style="font-size:10vw;color: white;" class="fa fa-arrow-left ArrowSZ"></i></a>
       </div>
+
+
+      <h1 style="text-align: center;color: white; font-size: 12vw;font-family: Georgia, 'Times New Roman', Times, serif;margin-bottom: 5vw;"> Terms of use </h1>
+
+      {% if Info %}
+      {% for i in Info %}
+
+      <h1 class="Title"> {{i.Title}}</h1>
+
+      <h2 class="Description"> {{i.Description}}</h2>
+
+
+      {% endfor %}
+      {% endif %}
     
 </body>
 </html>
-<style>
-    body {
 
-
-background: linear-gradient(to bottom, navy, black);
-font-family: Arial, sans-serif;
-
-min-height: 100vh;
-margin: 0;
-padding: 0;
-}
-</style>

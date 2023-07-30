@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{% static '/css/Completed.css' %}">
+  <script src="{% static '/js/Completed.js' %}"></script>
+  <title>Completed</title>
+</head>
+<body>
+  <div class="header">
+    <a href="{% url 'Base:Welcome' %}">
+      <i class="fa fa-arrow-left Return"></i>
+    </a>
+  </div>
+
+  <div class="container">
+    <div class="progress-bar">
+      {% if Invoice.status == 'partial' %} 
+        <div class="progress-bar-fill Partial"></div>
+      {% elif Invoice.status == 'completed' %}
+        <div class="progress-bar-fill Completed"></div>
+      {% endif %}
+    </div>
+
+    <div class="checkout-grid">
+      <div class="checkout-item">
+        <div class="checkout-label">Down Payment</div>
+        <div class="checkout-value">$ {{ Invoice.DownPayment }}</div>
+      </div>
+      <div class="checkout-item">   
+        <div class="checkout-label">Base</div>
+        <div class="checkout-value">$ {{ Invoice.Basepay }}</div>  
+      </div>
+      <div class="checkout-item">
+        <div class="checkout-label">Final Payment</div>
+        <div class="checkout-value">$ {{ Invoice.FullPayment }}</div>
+      </div>
+      <div class="checkout-item">
+        <div class="checkout-label">Additional Features</div>
+        {% if Invoice.additional_features.all %}
+          {% for i in Invoice.additional_features.all %}
+            <div class="checkout-value">$ {{ i.Price }} - {{ i.Feature }}</div>
+          {% endfor %}
+        {% else %}
+          <div class="checkout-value">No additional features</div>
+        {% endif %}
+      </div>
+      <div class="checkout-item">
+        <div class="checkout-label">Service Total</div>
+        <div class="checkout-value">$ {{ Invoice.TotalDue }}</div>
+      </div>
+      <div class="checkout-item">
+        <div class="checkout-label">Tax</div>
+        <div class="checkout-value">$ {{ Invoice.Tax }}</div>
+      </div>
+    </div>
+
+    <hr>
+
+    {% if Invoice.status == 'No' %} 
+      <div class="Font">10% Down payment due ${{Invoice.DownPayment}}</div> 
+      <div class="PaymentMsg">After you have made the initial 10% payment, I will arrive on the agreed-upon date to capture event footage with my drone and other equipment.</div>
+    {% elif Invoice.status == 'partial' %}
+      <div class="Font">Remaining 90% ${{Invoice.FullPayment}}</div>
+      <div class="PaymentMsg">Thank you for making the down payment. Our team will be visiting you soon to shoot the drone session. You can pay the remaining balance, but it's not mandatory until after the preview is sent.</div>
+    {% elif Invoice.status == 'completed' %}
+      <div class="PaymentMsg">Thank you for working with me!</div>
+    {% elif Invoice.status == 'Refunded' %}
+      <div class="Font">Refund complete</div>
+    {% endif %}
+  </div>
+
+  <div class="paypal-container" id="paypal-button-container">
+    <script src="https://www.paypal.com/sdk/js?client-id=AY2wdQG_y_85LLpBQ_07aOi835NSIz7uB_gZQP3rsl1r9iCyPm8tDOgpb6yoLksAfdsbEFW6Vk-NGRKP&currency=USD&disable-funding=credit"></script>
+  </div>
+</body>
+</html>
+
+
+

@@ -1,27 +1,57 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Document</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"  href="{% static '/css/Questions.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<title>Questions</title>
 </head>
 <body>
+
     <div>
         <a href="{% url 'Base:Welcome' %}" ><i style="font-size:10vw;color: white;" class="fa fa-arrow-left ArrowSZ"></i></a>
       </div>
-    
+
+
+
+      <h1 style="text-align: center;font-size: 10vw; color: white;font-family: Georgia, 'Times New Roman', Times, serif;margin: 3vw;"> Common questions</h1>
+
+{% if Faq %}
+{% for i in Faq %}
+<button type="button" class="collapsible">{{i.Title}} </button>
+<div class="content"> {{i.Question}}</div>
+{% endfor %}
+{% endif %}
+
 </body>
 </html>
-<style>
-    body {
+
+  
+
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+var i;
+  
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+
+  function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";}
+    
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";}
+</script>
 
 
-background: linear-gradient(to bottom, navy, black);
-font-family: Arial, sans-serif;
 
-min-height: 100vh;
-margin: 0;
-padding: 0;
-}
-</style>

@@ -1,0 +1,120 @@
+body {
+    background: linear-gradient(to bottom, navy, black);
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: white;
+  }
+
+    .navbar {
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 3vw 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+    }
+
+    .navbar ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .navbar li {
+        margin: 0 2vw;
+    }
+
+    .navbar a {
+        text-decoration: none;
+        color: white;
+        font-size: 2.5vw;
+    }
+
+    .navbar a:hover {
+        color: #FFD700;
+    }
+
+    .header {
+        text-align: center;
+        padding: 10vw;
+    }
+
+    .header h1 {
+        font-size: 8vw;
+        margin-bottom: 2vw;
+    }
+
+    .header p {
+        font-size: 3vw;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background-color: #FFD700;
+        color: black;
+        font-size: 4vw;
+        padding: 2vw 4vw;
+        text-decoration: none;
+        border-radius: 1vw;
+        margin-top: 4vw;
+        transition: background-color 0.3s ease;
+    }
+
+    .cta-button:hover {
+        background-color: #F9F9F9;
+        color: black;
+    }
+
+    .main-content {
+        padding: 10vw;
+        margin-top: 20vw; /* Add margin to push content below fixed navbar */
+    }
+
+    .section {
+        margin-bottom: 8vw;
+    }
+
+    .section h2 {
+        font-size: 6vw;
+        margin-bottom: 2vw;
+    }
+
+    .section p, .section li {
+        font-size: 3vw;
+        line-height: 1.6;
+    }
+
+    .testimonial {
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 4vw;
+        border-radius: 1vw;
+        margin-bottom: 4vw;
+    }
+
+    .testimonial p {
+        font-size: 3.5vw;
+        margin-bottom: 2vw;
+    }
+
+    .testimonial-author {
+        font-size: 3vw;
+        font-style: italic;
+    }
+
+    .footer {
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        text-align: center;
+        padding: 3vw 0;
+    }
+
+    .footer p {
+        font-size: 3vw;
+        margin: 0;
+    }

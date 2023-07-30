@@ -1,11 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet"  href="{% static '/css/Welcome.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photography Portfolio</title>
-    
+    <title>Photography Booking</title>
 </head>
 <body>
     <nav class="navbar">
@@ -13,95 +14,54 @@
             <li><a href="{% url 'Base:Questions' %}">Questions</a></li>
             <li><a href="{% url 'Base:Contact' %}">Contact</a></li>
             <li><a href="{% url 'Base:Policy' %}">Policy</a></li>
-            <li><a href="{% url 'Base:Appointment' %}">Appointment</a></li>
+            <li><a href="{% url 'Base:Appointment' %}">Book Session</a></li>
+            <li><a href="{% url 'Base:Invoice' %}">Invoice</a></li>
             <li><a href="{% url 'Base:Price' %}">Prices</a></li>
         </ul>
     </nav>
 
     <header class="header">
-        <h1>Photography Portfolio</h1>
+        <h1>Photography Booking</h1>
+        <p>Capture Moments, Create Memories</p>
+        <a href="{% url 'Base:Appointment' %}" class="cta-button">Book Now</a>
     </header>
 
     <main class="main-content">
-        <!-- Add your photography portfolio content here -->
+        <section class="section why-choose-us">
+            <h2>Why Choose Us?</h2>
+            <p>Our team of skilled photographers is committed to capturing the essence of your special moments. With attention to detail and a creative touch, we ensure your memories are immortalized in stunning photographs.</p>
+        </section>
+
+        <section class="section our-services">
+            <h2>Our Services</h2>
+            <ul>
+                <li>Portrait Photography</li>
+                <li>Family Photoshoots</li>
+                <li>Wedding Coverage</li>
+                <li>Event Photography</li>
+                <li>Corporate Photos</li>
+            </ul>
+        </section>
+
+        <section class="section testimonials">
+            <h2>Testimonials</h2>
+            <div class="testimonial">
+                <p>"The photographers were friendly and professional. They made us feel comfortable during the entire shoot, and the photos turned out fantastic!"</p>
+                <p class="testimonial-author">- Happy Client 1</p>
+            </div>
+            <div class="testimonial">
+                <p>"The attention to detail and the way they captured candid moments was exceptional. Highly recommend their services!"</p>
+                <p class="testimonial-author">- Happy Client 2</p>
+            </div>
+        </section>
     </main>
 
     <footer class="footer">
-        <p>&copy; 2023 Your Name</p>
+        <p>&copy; 2023 Your Name | Photography Booking</p>
     </footer>
 </body>
 </html>
 
-
 <style>
-    body {
-  
-    
-    background: linear-gradient(to bottom, navy, black);
-    font-family: Arial, sans-serif;
-
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar {
-    background-color: rgba(0, 0, 0, 0.8);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-}
-
-.navbar ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-around;
-    padding: 1vw;
-}
-
-.navbar li {
-    margin: 0 1vw;
-}
-
-.navbar a {
-    text-decoration: none;
-    color: white;
-    font-size: 2.5vw;
-}
-
-.navbar a:hover {
-    color: lightgray;
-}
-
-.header {
-    text-align: center;
-    padding: 5vw;
-    font-size: 6vw;
-    color: white;
-}
-
-.main-content {
-    padding: 5vw;
-    color: white;
-}
-
-.footer {
-    background-color: rgba(0, 0, 0, 0.8);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100vw;
-    text-align: center;
-    padding: 1vw;
-}
-
-.footer p {
-    margin: 0;
-    color: white;
-    font-size: 2vw;
-}
-
+   
 </style>

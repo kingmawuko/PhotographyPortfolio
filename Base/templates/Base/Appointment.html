@@ -1,28 +1,50 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="{% static '/css/Appointment.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Document</title>
 </head>
 <body>
+
+
+    <div class="Message">
+        {% if messages %}
+        {% for message in messages %}  
+        {{ message }}
+        {% endfor %}
+        {% endif %}
+        </div>
+
+
     <div>
         <a href="{% url 'Base:Welcome' %}" ><i style="font-size:10vw;color: white;" class="fa fa-arrow-left ArrowSZ"></i></a>
-      </div>>
-    
+    </div>
+
+    <div class="form-container">
+        <!-- Form with input fields -->
+        <form class="custom-form" method="post">
+            {% csrf_token %}
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" placeholder="Enter location" class="custom-input">
+
+            
+
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" placeholder="Enter email" class="custom-input">
+
+            <label for="phone">Phone Number</label>
+            <input type="text" id="phone" name="phone" placeholder="Enter phone number" class="custom-input">
+
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter name" class="custom-input">
+
+            <button name="SubmitForm" type="submit" class="custom-button">Submit</button>
+        </form>
+    </div>
 </body>
 </html>
 
-<style>
-    body {
-
-
-background: linear-gradient(to bottom, navy, black);
-font-family: Arial, sans-serif;
-
-min-height: 100vh;
-margin: 0;
-padding: 0;
-}
-</style>

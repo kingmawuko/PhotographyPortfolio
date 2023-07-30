@@ -1,28 +1,48 @@
+
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="{% static '/css/Price.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Document</title>
+
+    <title>Web Development Services and Prices</title>
 </head>
 <body>
-    <div>
-        <a href="{% url 'Base:Welcome' %}" ><i style="font-size:10vw;color: white;" class="fa fa-arrow-left ArrowSZ"></i></a>
-      </div>
+    <div class="return-btn-container">
+        <a href="{% url 'Base:Welcome' %}" class="return-btn"><i class="fa fa-arrow-left"></i></a>
+    </div>
+
+    <h1>Services and Prices</h1>
+
+    <div class="container table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+
+              {% if Service %}
+                {% for service in Service %}
+                <tr>
+                    <td>{{ service.Service }}</td>
+                    <td>{{ service.Description }}</td>
+                    <td> $ {{ service.BaseFee }}</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
     
 </body>
 </html>
 
-<style>
-        body {
-  
-    
-  background: linear-gradient(to bottom, navy, black);
-  font-family: Arial, sans-serif;
-
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-</style>

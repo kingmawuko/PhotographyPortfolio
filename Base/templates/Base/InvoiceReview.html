@@ -1,0 +1,159 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet"  href="{% static '/css/InvoiceReview.css' %}">
+  <script src="{% static '/js/partial.js' %}"></script>
+  <title>Review</title>
+
+
+<body>
+  <a href="{% url 'Base:Welcome' %}">
+    <i class="fa fa-arrow-left ReturnLink" ></i>
+  </a>
+  <div class="progress-bar">
+    {% if Invoice.status == 'partial' %} 
+      <div class="progress-bar-fill" style="width: 25%;"></div>
+  
+    {% elif Invoice.status == 'completed' %}
+      <div class="progress-bar-fill" style="width: 100%;"></div>
+    {% endif %}
+    <div class="progress-bar-labels">   
+    </div>
+  </div>
+
+ 
+
+
+</div><div class="checkout-grid">
+  <div class="checkout-item">
+    <div class="checkout-label">Down Payment</div>
+    <div class="checkout-value">$ {{ Invoice.DownPayment }}</div>
+  </div>
+  <div class="checkout-item">   
+    <div class="checkout-label">Base</div>
+    <div class="checkout-value">$ {{ Invoice.Basepay }}</div>  
+  </div>
+  <div class="checkout-item">
+    <div class="checkout-label">Final Payment</div>
+    <div class="checkout-value">$ {{ Invoice.FullPayment }}</div>
+  </div>
+  <div class="checkout-item">
+    <div class="checkout-label">Additional Features</div> <!-- this would be additional features -->
+   
+  {% if Invoice.additional_features.all %}
+    {% for i in Invoice.additional_features.all %}
+    <div class="checkout-value">$  ${{ i.Price }} - {{ i.Feature }} </div>
+    {% endfor %}
+    {% else %}
+    <div class="checkout-value"> No additional features</div>
+      {% endif %}
+  </div>
+  <div class="checkout-item">
+    <div class="checkout-label">Service Total</div>
+    <div class="checkout-value">$ {{ Invoice.TotalDue }}</div>
+  </div>
+  <div class="checkout-item">
+    <div class="checkout-label">Tax</div>
+    <div class="checkout-value">$ {{ Invoice.Tax }}</div>
+  </div>
+</div>
+
+
+  
+  
+  <hr>
+
+  {% if Invoice.status == 'No' %} 
+   <div class="ServiceMsg">10% Down payment due ${{Invoice.DownPayment}}</div>
+ <div  class="ServiceMsg" > Once the initial payment of 10% has been received, I will begin the assembly of your project and provide you with an update on the  agreed-upon date.  </div>
+    
+
+  {% elif Invoice.status == 'partial' %}
+  
+
+    <div class="ServiceMsg">Remaining 90% ${{Invoice.FullPayment}}</div>
+    <div class="ServiceMsg"> I will begin assembling your project and keep you updated on the agreed-upon date. While you can pay the remaining balance at any time, it's not mandatory until after you've received and reviewed the preview. </div>
+  {% elif Invoice.status == 'completed' %}
+
+    <div class="ServiceMsg">Thank you for choosing us!</div>
+    
+ 
+  {% endif %}
+
+  
+  
+    <div  class="PaypalBtn"  id="paypal-button-container">
+    <script src="https://www.paypal.com/sdk/js?client-id=AY2wdQG_y_85LLpBQ_07aOi835NSIz7uB_gZQP3rsl1r9iCyPm8tDOgpb6yoLksAfdsbEFW6Vk-NGRKP&currency=USD&disable-funding=credit"></script>
+
+
+
+
+  </div>
+</body>
+</html>
+
+
+
+<script>
+  var status = '{{Invoice.status}}';
+  var total = '{{Invoice.FullPayment}}';
+  var downpayment = '{{Invoice.DownPayment}}';
+
+  if (status === 'No') {
+    total = downpayment;}
+ 
+
+  if (status === 'completed') {
+    total = FullPayment;}
+  
+
+  
+  paypal.Buttons({
+   
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(orderData) {
+       
+        window.location.replace("{% url 'Base:Partial' InvoiceNum=Invoice.Invoice %}");});
+
+
+    },
+    style: {
+      color: 'blue',
+      shape: 'pill',
+      label: 'pay',
+      height: 40
+    },
+
+   
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: total}}]});},
+
+
+
+
+   
+    onInit: function(data, actions) {
+      if (status === 'Partial') {
+        actions.order.get().then(function(orderData) {
+          actions.disable();
+          actions.message('Pay Full Amount to Proceed');
+        });
+      }
+      else if (status === 'Completed') {
+        actions.disable();
+        actions.message('Payment Complete');
+      }
+    }
+  }).render('#paypal-button-container');    
+</script>
+
+

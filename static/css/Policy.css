@@ -1,0 +1,13 @@
+.Title {color: white;font-size: 8vw;text-align: center; font-family: Georgia, 'Times New Roman', Times, serif;}
+.Description{ color: white;font-size: 5vw;text-align: center; margin-bottom: 6vw; font-family: Georgia, 'Times New Roman', Times, serif; }
+    body {
+
+
+background: linear-gradient(to bottom, navy, black);
+font-family: Arial, sans-serif;
+
+min-height: 100vh;
+margin: 0;
+padding: 0;
+}
+
